@@ -7,5 +7,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>comm</module>
+    <module>dataBase</module>
   </modules>
 </project>
