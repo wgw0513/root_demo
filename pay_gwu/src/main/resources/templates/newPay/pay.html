@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>支付订单</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" />
+</head>
+
+<body>
+	<!--头部  star-->
+	<header style="color: #fff">
+		<a href="javascript:history.go(-1);">
+			<div class="_left">
+				<img src="../../images/left.png" />
+			</div>
+			<span>支付订单</span>
+		</a>
+	</header>
+	<!--头部 end-->
+	<!--内容 star-->
+	<div class="contaniner fixed-cont">
+		<div class="pay_img">
+			<img src="../../images/pay.jpg">
+		</div>
+		<div class="payTime">
+			<li><span>剩余时间<span id="showtime"></span></span></li>
+			<li><strong id="totalFee">&nbsp;&nbsp;</strong><button onclick="refashPrice()">刷新</button></li>
+			<li>订单号:<span id="orderID"></span></li>
+		</div>
+		<!--支付 star-->
+		<div class="pay">
+			<div class="show">
+				<li><label><img src="../../images/weixin.png">微信支付<input
+						name="flag" type="radio" value="0" checked="checked" /><span></span></label>
+				</li>
+				<li><label><img src="../../images/zhifubao.png">支付宝支付<input
+						name="flag" type="radio" value="1" /><span></span></label></li>
+				<!--     		<li><label><img src="../../images/yue.png" >余额支付<input name="Fruit" type="radio" value="" /><span></span></label> </li> -->
+				<!--     		<li class="center"><a href="#" onClick="showHideCode()">查看更多支付方式↓</a></li> -->
+			</div>
+			<div class="showList" id="showdiv" style="display: none;">
+				<li><label><img src="../../images/yinhang.png">银行卡<input
+						name="Fruit" type="radio" value="" /><span></span></label></li>
+				<li><label><img src="../../images/weixin.png">添加更多<input
+						name="Fruit" type="radio" value="" /><span></span></label></li>
+
+				<li style="background: none"></li>
+			</div>
+		</div>
+		<!--支付 end-->
+	</div>
+	<div class="book-recovery-bot2" id="footer">
+		<a href="#"><div class="payBottom">
+				<li class="textfr">确认支付:</li>
+				<li class="textfl"><span id="totalFee2"></span></li>
+			</div> </a>
+	</div>
+<!--内容 end-->
+<script type="text/javascript">
+	document.write("<s"
+			+ "cript type='text/javascript' src='/js/zepto.min.js?"
+			+ Math.random() + "'></s" + "cript>");
+</script>	
+<script type="text/javascript">    
+	
+             var maxtime = 60 * 30; //一个小时，按秒计算，自己调整!   
+            function CountDown() {
+                 if (maxtime >= 0) {
+                     minutes = Math.floor(maxtime / 60);
+                   seconds = Math.floor(maxtime % 60);
+                     msg =minutes + "分" + seconds + "秒";
+                    	$("#showtime").html(msg);
+//                    if (maxtime == 5 * 60)alert("还剩5分钟");
+                         --maxtime;
+                 } else{
+                    clearInterval(timer);
+                   	alert("支付超时，请重新提交支付!");
+                   	history.back(-1);
+                }
+             }   
+             timer = setInterval("CountDown()", 1000);                
+     </script>
+	<script type="text/javascript">
+    (function() {
+    	var b = {};
+    	var a = {};
+    	a.PADCHAR = "=";
+    	a.ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    	a.makeDOMException = function() {
+    		var f, d;
+    		try {
+    			return new DOMException(DOMException.INVALID_CHARACTER_ERR)
+    		} catch (d) {
+    			var c = new Error("DOM Exception 5");
+    			c.code = c.number = 5;
+    			c.name = c.description = "INVALID_CHARACTER_ERR";
+    			c.toString = function() {
+    				return "Error: " + c.name + ": " + c.message
+    			};
+    			return c
+    		}
+    	};
+    	a.getbyte64 = function(e, d) {
+    		var c = a.ALPHA.indexOf(e.charAt(d));
+    		if (c === -1) {
+    			throw a.makeDOMException()
+    		}
+    		return c
+    	};
+    	a.decode = function(f) {
+    		f = "" + f;
+    		var j = a.getbyte64;
+    		var h, e, g;
+    		var d = f.length;
+    		if (d === 0) {
+    			return f
+    		}
+    		if (d % 4 !== 0) {
+    			throw a.makeDOMException()
+    		}
+    		h = 0;
+    		if (f.charAt(d - 1) === a.PADCHAR) {
+    			h = 1;
+    			if (f.charAt(d - 2) === a.PADCHAR) {
+    				h = 2
+    			}
+    			d -= 4
+    		}
+    		var c = [];
+    		for (e = 0; e < d; e += 4) {
+    			g = (j(f, e) << 18) | (j(f, e + 1) << 12) | (j(f, e + 2) << 6)
+    					| j(f, e + 3);
+    			c.push(String.fromCharCode(g >> 16, (g >> 8) & 255, g & 255))
+    		}
+    		switch (h) {
+    		case 1:
+    			g = (j(f, e) << 18) | (j(f, e + 1) << 12) | (j(f, e + 2) << 6);
+    			c.push(String.fromCharCode(g >> 16, (g >> 8) & 255));
+    			break;
+    		case 2:
+    			g = (j(f, e) << 18) | (j(f, e + 1) << 12);
+    			c.push(String.fromCharCode(g >> 16));
+    			break
+    		}
+    		return c.join("")
+    	};
+    	a.getbyte = function(e, d) {
+    		var c = e.charCodeAt(d);
+    		if (c > 255) {
+    			throw a.makeDOMException()
+    		}
+    		return c
+    	};
+    	a.encode = function(f) {
+    		if (arguments.length !== 1) {
+    			throw new SyntaxError("Not enough arguments")
+    		}
+    		var g = a.PADCHAR;
+    		var h = a.ALPHA;
+    		var k = a.getbyte;
+    		var e, j;
+    		var c = [];
+    		f = "" + f;
+    		var d = f.length - f.length % 3;
+    		if (f.length === 0) {
+    			return f
+    		}
+    		for (e = 0; e < d; e += 3) {
+    			j = (k(f, e) << 16) | (k(f, e + 1) << 8) | k(f, e + 2);
+    			c.push(h.charAt(j >> 18));
+    			c.push(h.charAt((j >> 12) & 63));
+    			c.push(h.charAt((j >> 6) & 63));
+    			c.push(h.charAt(j & 63))
+    		}
+    		switch (f.length - d) {
+    		case 1:
+    			j = k(f, e) << 16;
+    			c.push(h.charAt(j >> 18) + h.charAt((j >> 12) & 63) + g + g);
+    			break;
+    		case 2:
+    			j = (k(f, e) << 16) | (k(f, e + 1) << 8);
+    			c.push(h.charAt(j >> 18) + h.charAt((j >> 12) & 63)
+    					+ h.charAt((j >> 6) & 63) + g);
+    			break
+    		}
+    		return c.join("")
+    	};
+    	b.pay = function(d) {
+    		var c = encodeURIComponent(a.encode(d));
+    		location.href = "/alipay.html?goto=" + c
+    	};
+    	b.decode = function(c) {
+    		return a.decode(decodeURIComponent(c))
+    	};
+    	window._AP = b
+    })();
+
+    </script>
+<script type="text/javascript">
+function showHideCode(){
+ 	$("#showdiv").toggle();
+}
+</script>
+<script type="text/javascript" th:inline="javascript">
+ 	var dataMap=[[${dataMap}]];
+ 	var returnURL;
+ 	if (dataMap.returnURL) {
+ 		returnURL = dataMap.returnURL;
+ 	}
+ 	
+ 	//重复支付直接跳转页面
+ 	if(dataMap.code==5050){
+		alert('该订单已支付成功，请勿重复支付！');
+	 	window.open(returnURL);
+ 	}
+ 	
+ 	$("#totalFee").text("¥"+dataMap.totalFee);
+ 	$("#totalFee2").text("¥"+dataMap.totalFee);
+ 	$("#orderID").text(dataMap.payNo);
+	//微信支付
+	function wechatpay() {
+		var data = {
+				'orderID' : dataMap.payNo,
+				'openid' : dataMap.openid,
+				'totalFee' : dataMap.totalFee,
+				'ip' : dataMap.ip,
+				'body': dataMap.body,
+				'notifyURL':dataMap.noticeURL,
+				'returnURL':dataMap.returnURL,
+				'payType':dataMap.payType
+			};
+		$.ajax({
+			  type: 'POST',
+			  url: '/wechat/payment/jsApiPay',
+			  data: data,
+			  dataType: 'json',
+			  headers : {
+					'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
+				},
+			  success: function(data){
+				  if(data.msg!=null&&data.code==5050){
+					  alert(data.msg);
+					  window.open(returnURL);
+				  }else{
+				 	 WeixinJSBridge.invoke('getBrandWCPayRequest',eval('(' + data.packageData + ')'),
+					    function(res){
+					       //支付成功或失败前台判断
+			    	       if(res.err_msg=='get_brand_wcpay_request:ok'){
+			    	    	   alert('恭喜您，支付成功!');
+			    	    	   if (returnURL) {
+				    	    	   window.open(returnURL);
+			    	    	   } else {
+			    	    		 WeixinJSBridge.call('closeWindow');   
+			    	    	   }
+			    	       }else{
+			    	    	   alert('支付失败');
+			    	    	   var wxno = 'oIvObjja7OWq1QWUqEXNlUlhPrsE';
+			    	       }
+					     });
+				 } 	 
+			  },
+			  error: function(xhr, type){
+			    alert('Ajax error!')
+			  }
+			 
+			  
+			});
+	}
+	//阿里pay
+	function  aliPay(){
+		$.ajax({
+	        url:"/ali/payment/pay/aliMobilePay", 
+	        data: {
+	        	'orderID': dataMap.payNo,
+	            'totalFee':dataMap.totalFee,
+	            'token':'gwudemo',
+	            'body':dataMap.body,
+	            'noticeURL':dataMap.noticeURL,
+	            'payType':dataMap.payType  
+	        },
+	        dataType: 'json',
+	        type: 'post',
+	        headers: {
+	            	'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
+	        },
+	        success: function(data) {
+	        	 if(data.msg!=null&&data.code==5050){
+					  alert(data.msg);
+					  window.open(returnURL);
+				  }else{
+		            var url = data.sHtml5Text; 
+		            _AP.pay(url); 
+	            return false;
+			}
+	        },
+	        error: function(xhr, type, errorThrown) {
+	            alert("网络错误");
+	        }
+	    });
+	}	
+	$("#footer").click(function(){
+		var flag=$('input[name="flag"]:checked').val();
+			//支付宝
+			if("1"==flag){
+				aliPay();
+			}else{
+				wechatpay();
+			}
+		
+		});
+	//刷新页面金额
+	function refashPrice(){
+		$.ajax({
+			  type: 'POST',
+			  url: '/wechat/payment/refashToalMoney',
+			  data: {orderNo:dataMap.payNo},
+			  dataType: 'json',
+			  success: function(data){
+				 if(data!=null){
+				  $("#totalFee").text("¥"+data);
+				 	$("#totalFee2").text("¥"+data);
+				 }
+			  },
+			  error: function(xhr, type){
+			    alert('Ajax error!')
+			  }
+			});
+		
+		
+	}
+	</script>
+
+</body>
+</html>

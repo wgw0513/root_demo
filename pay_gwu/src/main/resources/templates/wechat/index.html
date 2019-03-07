@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>支付订单</title>
+	
+	<link rel="stylesheet" href="css/style.css" type="text/css"/>
+	
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js" ></script>
+	
+</head>
+	
+<body>
+<!--头部  star-->
+<header style="color:#fff">
+	<a href="javascript:history.go(-1);">
+		<div class="_left"><img src="images/left.png"></div><span>支付订单</span></a>
+</header>
+<!--头部 end-->
+<!--内容 star-->
+<div class="contaniner fixed-cont">
+	<div class="pay_img"><img src="images/pay.jpg"></div>
+    
+    <div class="payTime">
+    	<li><span>剩余时间14:56</span></li>
+        <li><strong>¥56.00</strong></li>
+        <li>订单号:487237899083627829</li>
+    </div>
+    
+    <!--支付 star-->
+	<div class="pay">
+		<div class="show">
+			<li><label><img src="images/weixin.png" >微信支付<input name="Fruit" type="radio" value="" checked/><span></span></label> </li>
+    		<li><label><img src="images/zhifubao.png" >支付宝支付<input name="Fruit" type="radio" value="" /><span></span></label> </li>
+    		<li><label><img src="images/yue.png" >余额支付<input name="Fruit" type="radio" value="" /><span></span></label> </li>
+    		<li class="center"><a href="#" onClick="showHideCode()">查看更多支付方式↓</a></li>
+		</div>
+		<div class="showList" id = "showdiv" style="display:none;">
+			<li><label><img src="images/yinhang.png" >银行卡<input name="Fruit" type="radio" value="" /><span></span></label> </li>
+            <li><label><img src="images/weixin.png" >添加更多<input name="Fruit" type="radio" value=""/><span></span></label> </li>
+            
+            <li style="background:none" ></li>
+		</div>
+	</div> 
+    <!--支付 end--> 
+    
+    
+</div>
+
+    
+<div class="book-recovery-bot2" id="footer">
+	<a href="#"><div class="payBottom">
+    	<li class="textfr">确认支付:</li>
+        <li class="textfl"><span>¥56.00</span></li>
+    </div>
+	</a>
+</div> 
+<!--内容 end-->
+        
+
+<script type="text/javascript">
+function showHideCode(){
+ 	$("#showdiv").toggle();
+}
+</script>
+
+</body>
+</html>
