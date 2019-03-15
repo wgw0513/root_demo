@@ -85,7 +85,6 @@ public class WechatCoreService {
                 		 
                 	 } 
                 	 
-//                	 String mes="感谢您关注广州市环博信息科技有限公官方微信!"; 
 //                	 return mes;
                 	
                 }  else if ("unsubscribe".equals(event)) { // 取消订阅事件	

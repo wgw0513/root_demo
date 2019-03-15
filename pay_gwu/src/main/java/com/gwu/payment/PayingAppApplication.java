@@ -8,7 +8,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 import com.gwu.payment.wechat.util.TokenThread;
 /**启动mybatise事务*/
-//@MapperScan("com.ringbet.rabbit.database.mapper")
 //@EnableScheduling
 @SpringBootApplication
 public class PayingAppApplication  extends SpringBootServletInitializer implements CommandLineRunner  {

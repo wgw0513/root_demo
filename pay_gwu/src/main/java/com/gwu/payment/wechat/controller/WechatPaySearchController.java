@@ -27,7 +27,7 @@ public class WechatPaySearchController {
 	 * @param refundFee 退款金额
 	 * @param transactionID 微信订单号
 	 * @return 退款操作
-	 * http://wx.ringbet.com.cn/wechat/payment/search/isPayOverAlready?orderID=18082109480214436209&payType=WR
+	 * http://XXX.com/wechat/payment/search/isPayOverAlready?orderID=18082109480214436209&payType=WR
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/isPayOverAlready")

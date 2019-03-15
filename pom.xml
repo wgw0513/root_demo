@@ -17,6 +17,7 @@
     <module>comm</module>
     <module>dataBase</module>
     <module>pay_gwu</module>
+    <module>system</module>
   </modules>
   <dependencies>
   <dependency>

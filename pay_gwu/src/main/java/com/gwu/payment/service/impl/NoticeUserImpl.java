@@ -1,7 +1,4 @@
-/**
- * copyright： Copyright ® 2013 三环国际软件版权所有
- * company： i3ring.com
- */
+
 package com.gwu.payment.service.impl;
 
 import java.util.Date;
